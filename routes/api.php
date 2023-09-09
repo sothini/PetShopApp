@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\v1\AdminUserController;
 use App\Http\Controllers\api\v1\BrandController;
 use App\Http\Controllers\api\v1\CategoryController;
+use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\ProductController;
 use App\Http\Controllers\api\v1\UserController;
 use Illuminate\Http\Request;
@@ -46,6 +47,10 @@ Route::prefix('v1')->group(function () {
     //Product
     Route::get('products', [ProductController::class, 'index']);
     Route::get('product/{uuid}', [ProductController::class, 'show']);
+
+     //Payment
+     Route::get('payments', [PaymentController::class, 'index']);
+     Route::get('payment/{uuid}', [PaymentController::class, 'show']);
  
 
     Route::middleware(['admin.side'])->group(function () {
@@ -72,6 +77,10 @@ Route::prefix('v1')->group(function () {
         Route::post('product/create', [ProductController::class, 'create']);
         Route::match(['put', 'patch'], 'product/{uuid}', [ProductController::class, 'edit']);
         Route::delete('product/{uuid}', [ProductController::class, 'delete']);
+
+        Route::post('payment/create', [PaymentController::class, 'create']);
+        Route::match(['put', 'patch'], 'payment/{uuid}', [PaymentController::class, 'edit']);
+        Route::delete('payment/{uuid}', [PaymentController::class, 'delete']);
 
         
     });
