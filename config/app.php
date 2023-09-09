@@ -5,6 +5,15 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+
+   /*
+   |--------------------------------------------------------------------------
+   | Custom environment varibales
+   |--------------------------------------------------------------------------
+   */
+   'PRIVATE_KEY' => env('PRIVATE_KEY'),
+   'APP_URL' => env('APP_URL'),
+   'VERIFICATION_KEY' => env('VERIFICATION_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Application Name
