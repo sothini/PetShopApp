@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\v1\AdminUserController;
 use App\Http\Controllers\api\v1\BrandController;
 use App\Http\Controllers\api\v1\CategoryController;
+use App\Http\Controllers\api\v1\OrderStatusController;
 use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\ProductController;
 use App\Http\Controllers\api\v1\UserController;
@@ -51,6 +52,10 @@ Route::prefix('v1')->group(function () {
      //Payment
      Route::get('payments', [PaymentController::class, 'index']);
      Route::get('payment/{uuid}', [PaymentController::class, 'show']);
+
+    //Order Status
+    Route::get('order-statuses', [OrderStatusController::class, 'index']);
+    Route::get('order-status/{uuid}', [OrderStatusController::class, 'show']);
  
 
     Route::middleware(['admin.side'])->group(function () {
@@ -82,6 +87,8 @@ Route::prefix('v1')->group(function () {
         Route::match(['put', 'patch'], 'payment/{uuid}', [PaymentController::class, 'edit']);
         Route::delete('payment/{uuid}', [PaymentController::class, 'delete']);
 
-        
+        Route::post('order-status/create', [OrderStatusController::class, 'create']);
+        Route::match(['put', 'patch'], 'order-status/{uuid}', [OrderStatusController::class, 'edit']);
+        Route::delete('order-status/{uuid}', [OrderStatusController::class, 'delete']);
     });
 });

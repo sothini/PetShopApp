@@ -687,6 +687,207 @@
                 ]
             }
         },
+        "/order-status/create": {
+            "post": {
+                "tags": [
+                    "Order Statuses"
+                ],
+                "summary": "Create a new order status",
+                "description": "Create a new order status",
+                "operationId": "createOrderStatus",
+                "requestBody": {
+                    "description": "Order status data",
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderStatus"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order status created successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/order-statuses": {
+            "get": {
+                "tags": [
+                    "Order Statuses"
+                ],
+                "summary": "List order statuses",
+                "description": "Retrieve a list of order statuses",
+                "operationId": "listOrderStatuses",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/order-status/{uuid}": {
+            "get": {
+                "tags": [
+                    "Order Statuses"
+                ],
+                "summary": "Retrieve an order status",
+                "description": "Retrieve an order status identified by UUID",
+                "operationId": "getOrderStatus",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the order status to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order status retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Order status not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Order Statuses"
+                ],
+                "summary": "Update an order status",
+                "description": "Update an order status identified by UUID",
+                "operationId": "updateOrderStatus",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the order status to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Order status data",
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderStatus"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order status updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Order status not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Order Statuses"
+                ],
+                "summary": "Delete an order status",
+                "description": "Deletes an order status identified by UUID",
+                "operationId": "destroyOrderStatus",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the order status to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Order status deleted successfully"
+                    },
+                    "404": {
+                        "description": "Order status not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/payment/create": {
             "post": {
                 "tags": [
@@ -1320,6 +1521,20 @@
                     },
                     "slug": {
                         "description": "Category slug",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderStatus": {
+                "title": "OrderStatus",
+                "description": "OrderStatus model",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "description": "Order status title",
                         "type": "string"
                     }
                 },
