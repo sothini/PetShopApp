@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin',
             'is_admin'=> 1
         ]);
+
+        $this->call([ 
+            CategorySeeder::class,
+            BrandSeeder::class,
+         ]);
     }
 }
