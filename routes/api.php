@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\v1\AdminUserController;
+use App\Http\Controllers\api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,22 @@ Route::prefix('v1')->group(function () {
     Route::post('admin/create', [AdminUserController::class, 'create']);
     Route::get('admin/logout', [AdminUserController::class, 'logout']);
 
-    Route::middleware(['admin.side'])->group(function () {
+     //User
+     Route::post('user/login', [UserController::class, 'login']);
+     Route::post('user/create', [UserController::class, 'create']);
+     Route::get('user/logout', [UserController::class, 'logout']);
+ 
 
+    Route::middleware(['admin.side'])->group(function () {
         Route::get('admin/user-listing', [AdminUserController::class, 'index']);
         Route::put('admin/user-edit/{uuid}', [AdminUserController::class, 'edit']);
         Route::Delete('admin/user-delete/{uuid}', [AdminUserController::class, 'destroy']);
     });
 
+    Route::middleware(['user.side'])->group(function () {
+
+        Route::get('user', [UserController::class, 'show_user']);
+        Route::put('user/edit', [UserController::class, 'edit']);
+        Route::Delete('user', [UserController::class, 'delete']);
+    });
 });

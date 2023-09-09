@@ -7,7 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * @OA\Info(title="Buck App", version="0.1")
+ * @OA\Info(title="Petshop App", version="0.1")
  * @OA\PathItem(path="/api")
  * 
  * 
