@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\v1\AdminUserController;
 use App\Http\Controllers\api\v1\BrandController;
 use App\Http\Controllers\api\v1\CategoryController;
+use App\Http\Controllers\api\v1\ProductController;
 use App\Http\Controllers\api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,10 @@ Route::prefix('v1')->group(function () {
     //category
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('category/{uuid}', [CategoryController::class, 'show']);
+
+    //Product
+    Route::get('products', [ProductController::class, 'index']);
+    Route::get('product/{uuid}', [ProductController::class, 'show']);
  
 
     Route::middleware(['admin.side'])->group(function () {
@@ -63,5 +68,11 @@ Route::prefix('v1')->group(function () {
         Route::post('category/create', [CategoryController::class, 'create']);
         Route::match(['put', 'patch'], 'category/{uuid}', [CategoryController::class, 'edit']);
         Route::delete('category/{uuid}', [CategoryController::class, 'delete']);
+
+        Route::post('product/create', [ProductController::class, 'create']);
+        Route::match(['put', 'patch'], 'product/{uuid}', [ProductController::class, 'edit']);
+        Route::delete('product/{uuid}', [ProductController::class, 'delete']);
+
+        
     });
 });
