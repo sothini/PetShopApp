@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\v1\AdminUserController;
 use App\Http\Controllers\api\v1\BrandController;
 use App\Http\Controllers\api\v1\CategoryController;
+use App\Http\Controllers\api\v1\FileController;
 use App\Http\Controllers\api\v1\OrderController;
 use App\Http\Controllers\api\v1\OrderStatusController;
 use App\Http\Controllers\api\v1\PaymentController;
@@ -60,6 +61,10 @@ Route::prefix('v1')->group(function () {
 
     //order dashboard
     Route::get('orders/dashboard', [OrderController::class, 'dashboard']);
+
+     // file
+    
+     Route::get('file/{uuid}', [FileController::class, 'show']);
  
 
     Route::middleware(['admin.side'])->group(function () {
@@ -69,6 +74,8 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['user.side'])->group(function () {
+
+        Route::post('file/upload', [FileController::class, 'upload']);
 
         Route::get('user', [UserController::class, 'show_user']);
         Route::put('user/edit', [UserController::class, 'edit']);

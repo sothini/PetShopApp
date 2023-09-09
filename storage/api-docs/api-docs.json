@@ -687,6 +687,72 @@
                 ]
             }
         },
+        "/file/upload": {
+            "post": {
+                "tags": [
+                    "File"
+                ],
+                "summary": "Upload a file",
+                "description": "Upload a file to the pet shop.",
+                "operationId": "uploadFile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "The file to be uploaded",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "File uploaded successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/file/{uuid}": {
+            "get": {
+                "tags": [
+                    "File"
+                ],
+                "summary": "Get a file by UUID",
+                "description": "Retrieve a file from the pet shop by its UUID.",
+                "operationId": "getFileByUuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "UUID of the file to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File retrieved successfully",
+                        "content": {
+                            "application/octet-stream": {}
+                        }
+                    },
+                    "404": {
+                        "description": "File not found"
+                    }
+                }
+            }
+        },
         "/orders/dashboard": {
             "get": {
                 "tags": [
