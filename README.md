@@ -10,7 +10,6 @@ Welcome to the README file for your Laravel application. This document provides 
 4. [Environment Variables (most important)](#environment-variables)
 
 
-...
 
 ## 1. Prerequisites
 
@@ -21,7 +20,7 @@ Before you proceed, make sure you have the following prerequisites installed on 
 - MySQL or any other supported database system
 - Laravel CLI (https://laravel.com/docs/8.x/installation)
 
-...
+
 
 ## 2. Installation
 
@@ -29,32 +28,37 @@ Before you proceed, make sure you have the following prerequisites installed on 
 
 ```bash
    git clone https://github.com/sothini/PetShopApp.git
+```
 
  2. Navigate to the project directory:
 
 ```bash
-   cd your-laravel-app
+   cd PetshopApp
+   ```
 
 
  3. Install the required PHP dependencies using Composer:
 
 ```bash
   composer install
+  ```
 
 
  4. Create a copy of the .env.example file and rename it to .env:
 
 ```bash
    cp .env.example .env
+   ```
 
  5. Generate an application key:
 
 ```bash
    php artisan key:generate
+   ```
 	
 
 
-...
+
 
 ## 3. Environment Variables (Most Important)
 
